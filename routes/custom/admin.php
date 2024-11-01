@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Ferry\FerryController;
 use App\Http\Controllers\Admin\Sightseeing\SightseeingController;
 use App\Http\Controllers\Admin\SightseeingImg\SightseeingImgController;
 use App\Http\Controllers\Admin\SightseeingPoint\SightseenPointController;
+use App\Http\Controllers\Admin\Itinerary\ItineraryController;
 
 Route::prefix('admin/')->name('admin.')->middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'create'])->name('login');
@@ -101,8 +102,15 @@ Route::prefix('admin/')->name('admin.')->middleware('RedirectAdminIfNotAuthentic
     Route::get('sightseeing/{id}/sightseeingpoint',[SightseenPointController::class, 'index'])->name('shightseeingpoint.update');
     Route::put('sightseeing/{id}/sightseeingpoint', [SightseenPointController::class, 'update'])->name('shightseeingpoint.update');
     Route::get('sightseeing/{id}/edit/sightseeingpoint', [SightseenPointController::class, 'edit'])->name('shightseeingpoint.edit');
-    // Route::delete('sightseeingpoint/{id}', [SightseenPointController::class, 'delete'])->name('shightseeingpoint.delete');
-
     Route::delete('sightseeing/{sightseeing}/sightseeingpoint/{id}', [SightseenPointController::class, 'delete'])->name('shightseeingpoint.delete');
+
+
+
+    // Itinerary 
+
+
+    Route::get('itinerary/index',[ItineraryController:: class, 'index'])->name('itinerary.form');
+    Route::post('itinerary/store',[ItineraryController::class, 'store'])->name('itinerary.store');
+    Route::get('itinerary/list',[ItineraryController::class, 'list'])->name('itinerary.list');
 
 });
