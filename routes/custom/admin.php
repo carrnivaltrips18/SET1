@@ -112,5 +112,8 @@ Route::prefix('admin/')->name('admin.')->middleware('RedirectAdminIfNotAuthentic
     Route::get('itinerary/index',[ItineraryController:: class, 'index'])->name('itinerary.form');
     Route::post('itinerary/store',[ItineraryController::class, 'store'])->name('itinerary.store');
     Route::get('itinerary/list',[ItineraryController::class, 'list'])->name('itinerary.list');
-
+    Route::get('itinerary/edit/{id}', [ItineraryController::class, 'edit'])->name('itinerary.edit');
+    Route::put('itinerary/update/{id}',[ItineraryController::class, 'update'])->name('itinerary.update');
+    Route::delete('itinerary/delete/{id}',[ItineraryController::class, 'delete'])->name('itinerary.delete');
+    Route::get('itinerary/slide',[ItineraryController::class, 'slide'])->name('itinerary.slide_form');
 });

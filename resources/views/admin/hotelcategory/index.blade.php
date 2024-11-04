@@ -13,11 +13,16 @@
             @endif
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="mb-4">
-                        <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded"
+                    <div class="flex justify-between mb-4">
+                        <button type="button" class="bg-green-500 text-white px-4 py-2 rounded"
                             id="openAddCategoryModal">
                             {{ __('Add Hotel Category') }}
                         </button>
+                        <form method="GET" action="{{ route('admin.hotel.category') }}" class="flex items-center">
+                            <input type="text" name="search" value="{{ request('search') }}"
+                                placeholder="Search by Dest & caty..." class="border rounded p-2 mr-2 text-white bg-gray-800 placeholder-gray-400">
+                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
+                        </form>
                     </div>
 
                     <!-- Modal for Adding Hotel Category -->
@@ -209,6 +214,8 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <!-- Pagination Links -->
+                    {{ $categories->links() }} 
                 </div>
             </div>
         </div>

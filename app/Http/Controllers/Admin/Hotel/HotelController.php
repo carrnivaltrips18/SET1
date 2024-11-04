@@ -44,11 +44,18 @@ class HotelController extends Controller
         $hotel->save();
         return redirect()->route('admin.hotel.category')->with('success', 'Hotel added successfully.');
     }
-    public function index()
+    public function index(Request $request)
     {
-    $hotels = Hotel::all(); 
-    return view('admin.hotel.list', compact('hotels'));
+        $search = $request->input('search');
+
+        // Search for ferries by destination
+        $hotels = Hotel::when($search, function ($query) use ($search) {
+            return $query->where('destination', 'LIKE', '%' . $search . '%'); // Adjust 'destination' as needed
+        })->paginate(5);
+    // $hotels = Hotel::all(); 
+    return view('admin.hotel.list', compact('hotels','search'));
     }
+       
     public function edit($id){
         $hotel = Hotel::find($id);
         return view('admin.hotel.edit',compact('hotel'));

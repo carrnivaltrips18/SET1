@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.country')" :active="request()->routeIs('admin.country')">
+                    <x-nav-link :href="route('admin.country.list')" :active="request()->routeIs('admin.country.list')">
                         {{ __('Country') }}
                     </x-nav-link>
                 </div>
@@ -54,7 +54,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.itinerary.form')" :active="request()->routeIs('admin.itinerary.form')">
+                    <x-nav-link :href="route('admin.itinerary.list')" :active="request()->routeIs('admin.itinerary.list')">
                         {{ __('Itinerery') }}
                     </x-nav-link>
                 </div>

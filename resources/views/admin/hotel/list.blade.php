@@ -29,7 +29,17 @@
                 </script>
                 @endif
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-
+                <div class="p-6">
+                    <div class="flex justify-between mb-4">
+                        <a href="{{ route('admin.hotel.category') }}" class="bg-green-500 text-white px-4 py-2 rounded">
+                            {{ __('Add Hotel Category') }}
+                        </a>
+                        <form method="GET" action="{{ route('admin.hotels.list') }}" class="flex items-center">
+                            <input type="text" name="search" value="{{ request('search') }}"
+                                placeholder="Search by room name..." class="border rounded p-2 mr-2 text-white bg-gray-800 placeholder-gray-4002">
+                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
+                        </form>
+                    </div>
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50 dark:bg-gray-700">
                         <tr>
@@ -116,6 +126,8 @@
                         @endforeach
                     </tbody>
                 </table>
+                 <!-- Pagination Links -->
+                 {{ $hotels->links() }} 
             </div>
         </div>
     </div>

@@ -8,10 +8,19 @@ use App\Models\HotelCategory;
 
 class HotelCategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories = HotelCategory::all();
-        return view('admin.hotelcategory.index', compact('categories'));
+        
+         // Check if there is a search query
+         $search = $request->input('search');
+
+         // Search for ferries by destination
+         $categories = HotelCategory::when($search, function ($query) use ($search) {
+             return $query->where('destination', 'LIKE', '%' . $search . '%')->orWhere('category_wise', 'LIKE', "%{$search}%"); // Adjust 'destination' as needed
+         })->paginate(5);
+
+        // $categories = HotelCategory::all();
+        return view('admin.hotelcategory.index', compact('categories','search'));
     }
     public function store(Request $request)
     {

@@ -15,11 +15,17 @@
                 @endif
             <div class="bg-white dark:bg-gray-800 overflow-x-scroll shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="mb-4">
-                        <button type="button" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out"
+                    <div class="flex justify-between mb-4">
+                        <button type="button" class="inline-flex items-center px-4 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out"
                             id="openAddsightseenModal">
                             {{ __('Add sightseen') }}
                         </button>
+                        <form method="GET" action="{{ route('admin.sightseeing.index') }}" class="flex items-center">
+                            <input type="text" name="search" value="{{ request('search') }}"
+                                placeholder="Search by Destination..." class="border rounded p-2 mr-2 text-white bg-gray-800 placeholder-gray-400">
+                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
+                        </form>
+                        
                     </div>
 
                     <!-- Modal for Adding Hotel Category -->
@@ -178,6 +184,10 @@
                                 @endforeach
                             </tbody>
                         </table>
+                         <!-- Pagination Links -->
+                        <div class="px-6 py-4">
+                            {{ $sightseeing->links() }} <!-- This will display pagination controls -->
+                        </div>
                 </div>
             </div>
         </div>

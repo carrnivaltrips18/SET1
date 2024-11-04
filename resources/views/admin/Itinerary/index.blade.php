@@ -4,9 +4,14 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Add Itinerary') }}
             </h2>
-            <a href="{{ route('admin.itinerary.list') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                {{ __('View Itineraries') }}
-            </a>
+            <div class="flex space-x-4 mb-4">
+                <a href="{{ route('admin.itinerary.list') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    {{ __('View Itineraries') }}
+                </a>
+                <a href="{{ route('admin.itinerary.slide_form') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    {{ __('View Slide Form') }}
+                </a>
+            </div>
         </div>
     </x-slot>
 

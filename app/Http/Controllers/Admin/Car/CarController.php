@@ -8,9 +8,16 @@ use App\Models\Car;
 
 class CarController extends Controller
 {
-    public function list()
+    public function list(Request $request)
     {
-        $cars = Car::all();
+         // Check if there is a search query
+         $search = $request->input('search');
+
+         // Search for ferries by destination
+         $cars = Car::when($search, function ($query) use ($search) {
+             return $query->where('car_type', 'LIKE', '%' . $search . '%'); // Adjust 'destination' as needed
+         })->paginate(5);
+        // $cars = Car::all();
         return view('admin.car.list', compact('cars'));
     }
     public function index()

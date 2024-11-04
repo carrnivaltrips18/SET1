@@ -9,10 +9,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-x-scroll shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="m-4">
-                        <a href="{{ route('admin.cars.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out">
-                            Add Car
+                    <div class="flex justify-between mb-4">
+                        <a href="{{ route('admin.cars.create') }}" class="inline-flex items-center px-4 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out">
+                            {{__('Add Car') }}
                         </a>
+                        <form method="GET" action="{{ route('admin.hotel.rooms.list') }}" class="flex items-center">
+                            <input type="text" name="search" value="{{ request('search') }}"
+                                placeholder="Search by car_type..." class="border rounded p-2 mr-2 text-white bg-gray-800 placeholder-gray-400">
+                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
+                        </form>
                     </div>
                     
                     <table class="min-w-full divide-y divide-gray-200">
@@ -95,6 +100,8 @@
                                 @endforeach
                             </tbody>
                         </table>
+                         <!-- Pagination Links -->
+                     {{ $cars->links() }} 
                 </div>
             </div>
         </div>

@@ -8,10 +8,19 @@ use  App\Models\Sightseeing;
 
 class SightseeingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $sightseeing = Sightseeing::all();
-        return view('admin.sightseeing.index', compact('sightseeing'));
+        // Check if there is a search query
+        $search = $request->input('search');
+
+        // Search for ferries by destination
+        $sightseeing = Sightseeing::when($search, function ($query) use ($search) {
+            return $query->where('destination', 'LIKE', '%' . $search . '%'); // Adjust 'destination' as needed
+        })->paginate(5);
+
+
+        // $sightseeing = Sightseeing::all();
+        return view('admin.sightseeing.index', compact('sightseeing','search'));
     }
     public function store(Request $request)
     {

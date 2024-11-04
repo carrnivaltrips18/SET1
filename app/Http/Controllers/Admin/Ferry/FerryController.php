@@ -7,11 +7,19 @@ use Illuminate\Http\Request;
 use App\Models\Ferry;
 class FerryController extends Controller
 {
-    public function list()
-    {
-        $ferry =Ferry::all();
-        return view('admin.ferry.list',compact('ferry'));
-    }
+    public function list(Request $request)
+        {
+            // Check if there is a search query
+            $search = $request->input('search');
+
+            // Search for ferries by destination
+            $ferry = Ferry::when($search, function ($query) use ($search) {
+                return $query->where('ferry_type', 'LIKE', '%' . $search . '%'); // Adjust 'destination' as needed
+            })->paginate(5);
+
+            return view('admin.ferry.list', compact('ferry', 'search'));
+        }
+
     public function index()
     {
         return view('admin.ferry.index');

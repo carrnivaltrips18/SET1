@@ -54,11 +54,17 @@ class RoomController extends Controller
 
         return redirect()->route('admin.hotels.list')->with('success', 'Hotel Room added successfully.');
     }
-    public function list()
+    public function list(Request $request)
     {
-        $hotelroom = HotelRoom::all();
+        $search = $request->input('search');
+
+        // Search for ferries by destination
+        $hotelroom = HotelRoom::when($search, function ($query) use ($search) {
+            return $query->where('hotel_name', 'LIKE', '%' . $search . '%'); // Adjust 'destination' as needed
+        })->paginate(5);
+        // $hotelroom = HotelRoom::all();
         // dd($hotelroom->all());
-        return view('admin.hotel_room.list', compact('hotelroom'));
+        return view('admin.hotel_room.list', compact('hotelroom','search'));
     }
 
     public function delete($id)

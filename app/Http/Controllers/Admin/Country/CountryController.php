@@ -31,10 +31,17 @@ class CountryController extends Controller
 
         return redirect()->route('admin.country.list')->with('status', 'Country created successfully!');
     }
-    public function list()
+    public function list(Request $request)
     {
-        $countries = Country::all();
-        return view('admin.country.list', compact('countries'));
+        // Check if there is a search query
+         $search = $request->input('search');
+
+         // Search for ferries by destination
+         $countries = Country::when($search, function ($query) use ($search) {
+             return $query->where('country_name', 'LIKE', '%' . $search . '%')->orWhere('zip_code', 'LIKE', "%{$search}%"); // Adjust 'destination' as needed
+         })->paginate(5);
+        // $countries = Country::all();
+        return view('admin.country.list', compact('countries','search'));
     }
     public function edit($id)
     {
