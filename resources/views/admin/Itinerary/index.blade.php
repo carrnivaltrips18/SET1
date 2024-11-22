@@ -8,9 +8,9 @@
                 <a href="{{ route('admin.itinerary.list') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     {{ __('View Itineraries') }}
                 </a>
-                <a href="{{ route('admin.itinerary.slide_form') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                {{-- <a href="{{ route('admin.itinerary.slide1') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     {{ __('View Slide Form') }}
-                </a>
+                </a> --}}
             </div>
         </div>
     </x-slot>

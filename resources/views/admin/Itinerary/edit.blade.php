@@ -97,19 +97,29 @@
 
                         <div class="mt-4 mb-3">
                             <x-input-label class="block text-sm font-medium text-gray-700">Website Details</x-input-label>
-                            <hr class="my-2">
-                            <div class="flex flex-wrap">
-                                @foreach (['slide2.php?id=2' => 'Slide 2 <br>About Us', 
-                                            'slide6.php?id=2' => 'Slide 6 <br>Payment Policy', 
-                                            'slide9.php?id=2' => 'Slide 9 <br>Connect With Us', 
-                                            'slide10.php?id=2' => 'Slide 10 <br>Review & Award', 
-                                            'slide11.php?id=2' => 'Slide 11 <br>Why Carnival'] as $link => $title)
-                                    <a href="{{ $link }}" class="bg-blue-500 text-white rounded-md px-4 py-2 m-2 hover:bg-blue-600">
-                                        {!! $title !!}
+                                <hr class="my-2">
+                                <div class="flex flex-wrap">
+                                    <a href="{{ route('admin.itinerary.slide1', $packages->id) }}" class="bg-blue-500 text-white rounded-md px-4 py-2 m-2 hover:bg-blue-600">
+                                        Slide 1 <br>Why Carnival
                                     </a>
-                                @endforeach
+                                    <a href="{{ route('admin.itinerart.day', $packages->id) }}" class="bg-blue-500 text-white rounded-md px-4 py-2 m-2 hover:bg-blue-600">
+                                        Slide 2 <br> About Us
+                                    </a>
+                                    @foreach ([
+                                        route('admin.country') => 'Slide 2 <br>About Us', 
+                                        route('admin.cars') => 'Slide 6 <br>Payment Policy', 
+                                        route('admin.country.list') => 'Slide 9 <br>Connect With Us', 
+                                        route('admin.itinerary.list') => 'Slide 10 <br>Review & Award',
+                                    ] as $link => $title)
+                                        <a href="{{ $link }}" class="bg-blue-500 text-white rounded-md px-4 py-2 m-2 hover:bg-blue-600">
+                                            {!! $title !!}
+                                        </a>
+                                    @endforeach
+                                </div>
                             </div>
+                            
                         </div>
+                        
 
                         <div class="mt-4 mb-3">
                             <x-input-label class="block text-sm font-medium text-gray-700">Slide (Set Pre-Loaded Package)</x-input-label>
@@ -133,7 +143,7 @@
                             <x-input-label class="block text-sm font-medium text-gray-700">Day Wise Itinerary</x-input-label>
                             <hr class="my-2">
                             <div class="flex flex-wrap">
-                                @for ($day = 1; $day <= 4; $day++)
+                                @for ($day = 1; $day <= 8; $day++)
                                     <a href="day.php?id=2&day={{ $day }}" class="bg-blue-500 text-white rounded-md px-4 py-2 m-2 hover:bg-blue-600">Day {{ $day }}</a>
                                 @endfor
                             </div>

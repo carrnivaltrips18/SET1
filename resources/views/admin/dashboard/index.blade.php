@@ -15,4 +15,3 @@
         </div>
     </div>
 </x-admin.app-layout>
-

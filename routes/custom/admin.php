@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Sightseeing\SightseeingController;
 use App\Http\Controllers\Admin\SightseeingImg\SightseeingImgController;
 use App\Http\Controllers\Admin\SightseeingPoint\SightseenPointController;
 use App\Http\Controllers\Admin\Itinerary\ItineraryController;
+use App\Http\Controllers\Admin\Day_Itinerary\Day_Wise_ItineraryController;
 
 Route::prefix('admin/')->name('admin.')->middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'create'])->name('login');
@@ -115,5 +116,15 @@ Route::prefix('admin/')->name('admin.')->middleware('RedirectAdminIfNotAuthentic
     Route::get('itinerary/edit/{id}', [ItineraryController::class, 'edit'])->name('itinerary.edit');
     Route::put('itinerary/update/{id}',[ItineraryController::class, 'update'])->name('itinerary.update');
     Route::delete('itinerary/delete/{id}',[ItineraryController::class, 'delete'])->name('itinerary.delete');
-    Route::get('itinerary/slide',[ItineraryController::class, 'slide'])->name('itinerary.slide_form');
+
+    Route::get('itinerary/{id}/slide',[ItineraryController::class, 'slide'])->name('itinerary.slide1');
+    Route::post('itinerary/{id}/store',[ItineraryController::class, 'storeOrUpdate'])->name('itinerary.slide1.store');
+    Route::put('itinerary/{id}/update',[ItineraryController::class, 'storeOrUpdate'])->name('itinerary.slide1.update');
+
+    // day way itinerary 
+
+    Route::get('itinerary/{id}/slide2',[Day_Wise_ItineraryController::class, 'index'])->name('itinerart.day');
+    Route::post('itinerary/{id}/store',[Day_Wise_ItineraryController::class, 'UpdateOrStore'])->name('itinerart.slide2.store');
+    Route::put('itinerary/slide2/{id}/update',[Day_Wise_ItineraryController::class, 'UpdateOrStore'])->name('itinerary.slide2.update');
+
 });

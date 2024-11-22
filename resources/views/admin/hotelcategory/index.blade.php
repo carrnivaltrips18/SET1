@@ -21,7 +21,7 @@
                         <form method="GET" action="{{ route('admin.hotel.category') }}" class="flex items-center">
                             <input type="text" name="search" value="{{ request('search') }}"
                                 placeholder="Search by Dest & caty..." class="border rounded p-2 mr-2 text-white bg-gray-800 placeholder-gray-400">
-                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
+                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">{{__('Search') }}</button>
                         </form>
                     </div>
 

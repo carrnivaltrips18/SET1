@@ -18,7 +18,7 @@ class CarController extends Controller
              return $query->where('car_type', 'LIKE', '%' . $search . '%'); // Adjust 'destination' as needed
          })->paginate(5);
         // $cars = Car::all();
-        return view('admin.car.list', compact('cars'));
+        return view('admin.car.list', compact('cars'))->with('success', 'car add successfully.');
     }
     public function index()
     {

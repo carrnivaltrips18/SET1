@@ -7,8 +7,28 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @if (session('success'))
+            <div id="success-message" class="bg-green-500 text-white p-4 rounded mb-4 relative">
+                {{ session('success') }}
+                <button id="cut-button" class="absolute top-1 right-2 p-1 text-white"
+                        onclick="removeMessage()">x</button>
+            </div>
+
+            <script>
+                function removeMessage() {
+                    const message = document.getElementById('success-message');
+                    if (message) {
+                        message.style.display = 'none';
+                    }
+                }
+                setTimeout(() => {
+                    removeMessage();
+                }, 5000);
+            </script>
+        @endif
             <div class="bg-white dark:bg-gray-800 overflow-x-scroll shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                   
                     <div class="flex justify-between mb-4">
                         <a href="{{ route('admin.cars.create') }}" class="inline-flex items-center px-4 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out">
                             {{__('Add Car') }}
